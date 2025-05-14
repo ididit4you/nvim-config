@@ -3,7 +3,6 @@ if has("nvim")
 endif
 
 call plug#begin()
-    Plug 'lewis6991/impatient.nvim'
     Plug 'mhinz/vim-startify'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
@@ -55,7 +54,7 @@ call plug#begin()
     Plug 'windwp/nvim-ts-autotag'
 
     " Telescope
-    Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
+    Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
     Plug 'AckslD/nvim-neoclip.lua'
 
     " LSP Extensions
@@ -85,16 +84,15 @@ call plug#begin()
     " Rust stuff
     Plug 'simrat39/rust-tools.nvim',
 
+    " LLM STUFF
     " Copylot
     Plug 'zbirenbaum/copilot.lua',
     Plug 'zbirenbaum/copilot-cmp',
 
-    " ChatGPT
-    Plug 'jackMort/ChatGPT.nvim',
-    Plug 'MunifTanjim/nui.nvim',
-
-    Plug 'robitx/gp.nvim'
-
+    " Codecompanion
+    Plug 'olimorris/codecompanion.nvim'
+    Plug 'OXY2DEV/markview.nvim'
+    Plug 'ravitemer/codecompanion-history.nvim'
 
     " Zen Mode
     Plug 'folke/zen-mode.nvim',
