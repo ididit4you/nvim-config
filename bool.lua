@@ -7,7 +7,17 @@ require('boole').setup({
   -- increment: (key => value)
   -- decrement: (value => key)
   pair_additions = {
-    ['Foo'] = 'Bar',
-    ['Bar'] = 'Foo'
+    ['Yes'] = 'No',
+    ['No'] = 'Yes',
+    ['True'] = 'False',
+    ['False'] = 'True',
+    ['On'] = 'Off',
+    ['Off'] = 'On',
+    ['1'] = '0',
+    ['0'] = '1',
+    ['Да'] = 'Нет',
+    ['Нет'] = 'Да',
+    ['Включено'] = 'Выключено',
+    ['Выключено'] = 'Включено',
   },
 })
