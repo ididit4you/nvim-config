@@ -1,4 +1,112 @@
+local fmt = string.format
+prompt_library = {
+  ["Commit with ticket"] = {
+    strategy = "chat",
+    description = "Generate a commit message prfixed with ticket from branch name",
+    opts = {
+      index = 10,
+      is_default = true,
+      is_slash_cmd = true,
+      short_name = "bcommit",
+      auto_submit = true,
+    },
+    prompts = {
+      {
+        role = "user",
+        content = function()
+          local branch = vim.fn.system("git symbolic-ref --short HEAD")
+
+          return fmt(
+            [[
+              You are an expert at following the Conventional Commit specification. Given the git diff listed below, please generate a commit message for me.
+              Also wollow this rules:
+              if branch name started with some ticket prefix like ABC-XXX use it in a commit message as a prefix
+              examples:
+              Branch name: GMS-1234-some-stuff
+              Commit message: GMS-1234 <generated commit message>
+
+              Branch name: ABC-12345-other-stuff
+              Commit message: ABC-12345 <generated commit message>
+
+              If there is no ticket in branch name use just a commit message without a ticket prefix or any other prefix like feature, fix, etc.
+              examples:
+              Branch name: some-stuff
+              Commit message: <generated commit message>
+              ```diff
+              %s,
+              ```
+              %s
+            ]],
+            vim.fn.system("git diff --no-ext-diff --staged"),
+            branch and "Branch name: " .. branch or ""
+          )
+        end,
+        opts = {
+          contains_code = true,
+        },
+      },
+    },
+  },
+}
+
+
+adapters = {
+  ollama = function()
+    return require("codecompanion.adapters").extend("ollama", {
+      schema = {
+        model = {
+          default = "qwen3:8b",
+        },
+        think = {
+          default = true,
+        },
+      },
+      env = {
+        url = "https://ollama.hl.ididit4u.ru",
+        api_key = '037efd07-4542-4ca9-8710-7f2a702f954a',
+      },
+      headers = {
+        ["Content-Type"] = "application/json",
+        ["Authorization"] = "Bearer ${api_key}",
+      },
+      parameters = {
+        sync = true,
+      },
+    })
+  end,
+  ollama = function()
+    return require("codecompanion.adapters").extend("ollama", {
+      schema = {
+        model = {
+          default = "qwen3:8b",
+        },
+        think = {
+          default = true,
+        },
+      },
+      env = {
+        url = "https://ollama.hl.ididit4u.ru",
+        api_key = '037efd07-4542-4ca9-8710-7f2a702f954a',
+      },
+      headers = {
+        ["Content-Type"] = "application/json",
+        ["Authorization"] = "Bearer ${api_key}",
+      },
+      parameters = {
+        sync = true,
+      },
+    })
+  end,
+}
+
 require("codecompanion").setup({
+  prompt_library = prompt_library,
+  strategies = {
+    chat = {
+      adapter = "ollama",
+    },
+  },
+  adapters = adapters,
   extensions = {
     history = {
       enabled = true,

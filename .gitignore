@@ -1,2 +1,4 @@
 chatGPTkey
 pack
+.*_api_key
+.env

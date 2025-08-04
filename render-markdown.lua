@@ -1,4 +1,7 @@
 require('markview').setup({
+  experimental = {
+    check_rtp = false
+  },
   preview = {
     filetypes = { "markdown", "codecompanion" },
     ignore_buftypes = {},

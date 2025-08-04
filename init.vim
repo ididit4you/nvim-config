@@ -96,6 +96,7 @@ runtime ./colors/tokionight.lua
 
 runtime ./maps.lua
 runtime ./nvim_tree.lua
+runtime ./render-markdown.lua
 runtime ./treesitter.lua
 runtime ./diagnostics.lua
 runtime ./bufferline.lua
@@ -121,7 +122,6 @@ runtime ./bool.lua
 runtime ./copilot.lua
 runtime ./dap.lua
 runtime ./codecompanion.lua
-runtime ./render-markdown.lua
 
 " Apply the selected color scheme
 colorscheme tokyonight
