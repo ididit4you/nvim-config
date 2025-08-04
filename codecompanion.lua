@@ -2,7 +2,7 @@ local fmt = string.format
 prompt_library = {
   ["Commit with ticket"] = {
     strategy = "chat",
-    description = "Generate a commit message prfixed with ticket from branch name",
+    description = "Generate a commit message prefixed with ticket from branch name",
     opts = {
       index = 10,
       is_default = true,
@@ -58,7 +58,7 @@ adapters = {
           default = "qwen3:8b",
         },
         think = {
-          default = true,
+          default = false,
         },
       },
       env = {
@@ -74,38 +74,18 @@ adapters = {
       },
     })
   end,
-  ollama = function()
-    return require("codecompanion.adapters").extend("ollama", {
-      schema = {
-        model = {
-          default = "qwen3:8b",
-        },
-        think = {
-          default = true,
-        },
-      },
-      env = {
-        url = "https://ollama.hl.ididit4u.ru",
-        api_key = '037efd07-4542-4ca9-8710-7f2a702f954a',
-      },
-      headers = {
-        ["Content-Type"] = "application/json",
-        ["Authorization"] = "Bearer ${api_key}",
-      },
-      parameters = {
-        sync = true,
-      },
-    })
+  copilot = function()
+    return require("codecompanion.adapters").extend("copilot", {})
   end,
 }
 
 require("codecompanion").setup({
   prompt_library = prompt_library,
-  strategies = {
-    chat = {
-      adapter = "ollama",
-    },
-  },
+  -- strategies = {
+  --   chat = {
+  --     adapter = "ollama",
+  --   },
+  -- },
   adapters = adapters,
   extensions = {
     history = {

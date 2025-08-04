@@ -32,6 +32,7 @@ set shiftwidth=2
 set expandtab
 set smarttab
 set autoindent
+set signcolumn=yes
 
 " Use Unix file format
 set fileformat=unix
