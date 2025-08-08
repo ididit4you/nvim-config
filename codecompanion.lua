@@ -1,5 +1,5 @@
 local fmt = string.format
-prompt_library = {
+local prompt_library = {
   ["Commit with ticket"] = {
     strategy = "chat",
     description = "Generate a commit message prefixed with ticket from branch name",
@@ -62,6 +62,7 @@ adapters = {
         },
       },
       env = {
+        -- just for test and example
         url = "https://ollama.hl.ididit4u.ru",
         api_key = '037efd07-4542-4ca9-8710-7f2a702f954a',
       },

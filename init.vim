@@ -115,8 +115,6 @@ runtime ./cmp.lua
 runtime ./comment.lua
 runtime ./gitsigns.lua
 runtime ./ts_autotag.lua
-runtime ./mkdp.vim
-runtime ./orgmode.lua
 runtime ./nvim-autopairs.lua
 runtime ./hop.lua
 runtime ./bool.lua

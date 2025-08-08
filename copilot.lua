@@ -45,6 +45,8 @@ copilot.setup({
     gitcommit = false,
     gitrebase = false,
     hgcommit = false,
+    codecomapnion = true,
+
     svn = false,
     cvs = false,
     ["."] = true,

@@ -4,6 +4,7 @@ require("luasnip.loaders.from_vscode").lazy_load()
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 local cmp = require('cmp')
 
+
 -- nvim-cmp setup
 cmp.setup {
   snippet = {
@@ -73,10 +74,10 @@ cmp.setup {
       },
       group_index = 2,
     },
-    { name = 'luasnip' },
     { name = 'path' },
     { name = 'nvim_lsp' },
     { name = 'buffer' },
+    { name = 'luasnip' },
   },
   completion = {
     autocomplete = false,
