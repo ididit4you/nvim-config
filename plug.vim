@@ -31,9 +31,7 @@ call plug#begin()
     Plug 'mfussenegger/nvim-lint'
 
     " Color schemas
-    Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
     Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-    Plug 'klen/nvim-test'
 
     " Statusbar
     Plug 'feline-nvim/feline.nvim'
@@ -54,17 +52,17 @@ call plug#begin()
     Plug 'windwp/nvim-ts-autotag'
 
     " Telescope
-    Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
+    Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8-1' }
     Plug 'AckslD/nvim-neoclip.lua'
 
     " LSP Extensions
     Plug 'nvim-lua/lsp_extensions.nvim'
 
     " LSP Lines
-    Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
+    Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'  " Not maintained
 
     " LSP null-lsp
-    Plug 'https://github.com/jose-elias-alvarez/null-ls.nvim'
+    Plug 'https://github.com/jose-elias-alvarez/null-ls.nvim'  " Not maintained
 
     " LSP statusline/winbar component that uses LSP
     Plug 'SmiteshP/nvim-navic'
@@ -94,6 +92,9 @@ call plug#begin()
     Plug 'OXY2DEV/markview.nvim'
     Plug 'ravitemer/codecompanion-history.nvim'
 
+    " MCP stuff
+    Plug 'ravitemer/mcphub.nvim', { 'do': 'npm install -g mcp-hub@latest' }
+
     " Zen Mode
     Plug 'folke/zen-mode.nvim',
 
@@ -104,5 +105,7 @@ call plug#begin()
     Plug 'mfussenegger/nvim-dap-python'
     Plug 'nvim-neotest/nvim-nio'
     Plug 'rcarriga/nvim-dap-ui'
+
+    Plug 'voldikss/vim-floaterm'
 
 call plug#end()

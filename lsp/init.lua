@@ -1,4 +1,3 @@
-local nvim_lsp = require('lspconfig')
 local navic = require("nvim-navic")
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities(
@@ -20,38 +19,59 @@ vim.api.nvim_create_autocmd('LspAttach', {
       '<cmd>lua vim.lsp.buf.declaration()<CR>',
       bufopts
     )
-    vim.keymap.set('n', '<space>df', function() vim.lsp.buf.format { async = true } end, bufopts)
   end
 })
 
 -- LUA
-nvim_lsp.lua_ls.setup {
-  capabilities = capabilities,
+vim.lsp.enable('lua_ls', {
   on_attach = function(client, bufnr)
-    vim.api.nvim_command('autocmd BufWritePre *.lua lua vim.lsp.buf.format(nil, 100)')
     navic.attach(client, bufnr)
+    -- Create buffer-local autocommand for formatting
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      buffer = bufnr,
+    })
+  end,
+  on_init = function(client)
+    if client.workspace_folders then
+      local path = client.workspace_folders[1].name
+      if
+          path ~= vim.fn.stdpath('config')
+          and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
+      then
+        return
+      end
+    end
+
+    client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most
+        -- likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+        -- Tell the language server how to find Lua modules same way as Neovim
+        -- (see `:h lua-module-load`)
+        path = {
+          'lua/?.lua',
+          'lua/?/init.lua',
+        },
+      },
+      -- Make the server aware of Neovim runtime files
+      workspace = {
+        checkThirdParty = false,
+        library = {
+          vim.env.VIMRUNTIME
+        }
+      }
+    })
   end,
   settings = {
-    Lua = {
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = { 'vim' },
-      },
-
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-        checkThirdParty = false
-      },
-    },
-  },
-}
+    Lua = {}
+  }
+})
 
 -- RUST
-nvim_lsp.rust_analyzer.setup {
+vim.lsp.enable('rust_analyzer', {
   capabilities = capabilities,
   on_attach = function(client, bufnr)
-    vim.api.nvim_command('autocmd BufWritePre *.rs lua vim.lsp.buf.format(nil, 100)')
     navic.attach(client, bufnr)
   end
   ,
@@ -76,32 +96,31 @@ nvim_lsp.rust_analyzer.setup {
       },
     }
   }
-}
+})
 
 -- PYTHON
-nvim_lsp.pyright.setup {
+vim.lsp.enable('pyright', {
   -- capabilities = capabilities,
   on_attach = function(client, bufnr)
     navic.attach(client, bufnr)
   end,
-  pyton = {
+  python = {
     analysis = {
       autoSearchPaths = false,
       diagnosticMode = "workspace",
       useLibraryCodeForTypes = true
     }
   }
-}
+})
 
--- Arduino
-nvim_lsp.arduino_language_server.setup {
+vim.lsp.enable('arduino_language_server', {
   on_attach = function(client, bufnr)
     navic.attach(client, bufnr)
   end
-}
+})
 
 -- TS
-nvim_lsp.ts_ls.setup {
+vim.lsp.enable('ts_ls', {
   capabilities = capabilities,
   on_attach = function(client, bufnr)
     navic.attach(client, bufnr)
@@ -130,37 +149,30 @@ nvim_lsp.ts_ls.setup {
       },
     },
   },
-}
+})
 
--- Terraform
-nvim_lsp.tflint.setup {
-  capabilities = capabilities,
+-- Angular
+vim.lsp.enable('angularls', {
+  -- capabilities = capabilities,
   on_attach = function(client, bufnr)
     navic.attach(client, bufnr)
   end,
-}
+})
 
 -- Volar
-nvim_lsp.vls.setup {
+vim.lsp.enable('vls', {
   capabilities = capabilities,
   on_attach = function(client, bufnr)
     navic.attach(client, bufnr)
   end,
-}
+})
 
 -- ESLINT (JS, TS)
-nvim_lsp.eslint.setup {
-  capabilities = capabilities,
+local es_on_attach = vim.lsp.config.eslint.on_attach
+vim.lsp.config("eslint", {
   on_attach = function(client, bufnr)
-    client.resolved_capabilities = {
-      document_formating = true,
-    }
-    vim.api.nvim_command('augroup Format')
-    vim.api.nvim_command('autocmd! * <buffer>')
-    vim.api.nvim_command('autocmd BufWritePre <buffer> lua vim.lsp.buf.format(nil, 200)')
-    vim.api.nvim_command('augroup END')
+    if not es_on_attach then return end
+
+    es_on_attach(client, bufnr)
   end,
-  settings = {
-    format = { enable = true }, -- this will enable formatting
-  },
-}
+})
