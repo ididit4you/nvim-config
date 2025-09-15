@@ -119,10 +119,10 @@ runtime ./hop.lua
 runtime ./bool.lua
 runtime ./copilot.lua
 runtime ./dap.lua
-runtime ./codecompanion.lua
-runtime ./floatingterminal.lua
+runtime ./codecompanion/init.lua
 runtime ./mcp_hub.lua
+runtime ./floatingterminal.lua
+runtime ./ui/init.lua
 
 " Apply the selected color scheme
 colorscheme tokyonight
-
