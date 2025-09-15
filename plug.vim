@@ -8,6 +8,7 @@ call plug#begin()
 
     Plug 'nvim-lua/plenary.nvim'
 
+
     " Closes brackets automaticaly
     Plug 'windwp/nvim-autopairs'
 
@@ -33,8 +34,6 @@ call plug#begin()
     " Color schemas
     Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
-    " Statusbar
-    Plug 'feline-nvim/feline.nvim'
 
     " Nvim tree
     Plug 'kyazdani42/nvim-web-devicons' " for file icons
@@ -64,8 +63,6 @@ call plug#begin()
     " LSP null-lsp
     Plug 'https://github.com/jose-elias-alvarez/null-ls.nvim'  " Not maintained
 
-    " LSP statusline/winbar component that uses LSP
-    Plug 'SmiteshP/nvim-navic'
 
     Plug 's1n7ax/nvim-window-picker'
 
@@ -108,4 +105,11 @@ call plug#begin()
 
     Plug 'voldikss/vim-floaterm'
 
+    " Enhanced UI
+    Plug 'folke/noice.nvim'
+    Plug 'MunifTanjim/nui.nvim'
+    " Statusbar
+    Plug 'feline-nvim/feline.nvim'
+    " LSP statusline/winbar component that uses LSP
+    Plug 'SmiteshP/nvim-navic'
 call plug#end()
