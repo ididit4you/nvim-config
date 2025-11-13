@@ -10,7 +10,7 @@ return function()
     },
     env = {
       url = "https://ollama.hl.ididit4u.ru",
-      api_key = '037efd07-4542-4ca9-8710-7f2a702f954a',
+      api_key = 'CHANGE_ME',
     },
     headers = {
       ["Content-Type"] = "application/json",
