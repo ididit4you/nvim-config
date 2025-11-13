@@ -101,7 +101,6 @@ runtime ./render-markdown.lua
 runtime ./treesitter.lua
 runtime ./diagnostics.lua
 runtime ./bufferline.lua
-runtime ./feline.lua
 runtime ./masson.lua
 runtime ./nvim_lint.lua
 runtime ./lsp/navic.lua
