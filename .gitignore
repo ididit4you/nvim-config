@@ -2,3 +2,5 @@ chatGPTkey
 pack
 .*_api_key
 .env
+.vscode/
+in-memoria.db
