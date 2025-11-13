@@ -1,12 +1,12 @@
-require('markview').setup({
-  experimental = {
-    check_rtp = false
-  },
-  preview = {
-    filetypes = { "markdown", "codecompanion" },
-    ignore_buftypes = {},
-  }
-})
+-- require('markview').setup({
+--   experimental = {
+--     check_rtp = false
+--   },
+--   preview = {
+--     filetypes = { "markdown", "codecompanion" },
+--     ignore_buftypes = {},
+--   }
+-- })
 -- require('markview').setup({
 --   experimental = {
 --     date_formats = {},
@@ -114,3 +114,7 @@ require('markview').setup({
 --     properties = {}
 --   }
 -- })
+--{
+require('render-markdown').setup({
+  file_types = { "markdown", "codecompanion" }
+})
