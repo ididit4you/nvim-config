@@ -1,11 +1,4 @@
-local status_ok, copilot = pcall(require, "copilot")
-if not status_ok then
-  print("Copilot does not work!")
-  return
-end
-
-
-copilot.setup({
+require('copilot').setup({
   cmp = {
     enabled = false,
     method = "getCompletionsCycling",
@@ -45,8 +38,7 @@ copilot.setup({
     gitcommit = false,
     gitrebase = false,
     hgcommit = false,
-    codecomapnion = true,
-
+    codecompanion = true,
     svn = false,
     cvs = false,
     ["."] = true,
