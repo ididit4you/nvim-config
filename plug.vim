@@ -51,7 +51,7 @@ call plug#begin()
     Plug 'windwp/nvim-ts-autotag'
 
     " Telescope
-    Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8-1' }
+    Plug 'nvim-telescope/telescope.nvim'
     Plug 'AckslD/nvim-neoclip.lua'
 
     " LSP Extensions
@@ -62,7 +62,6 @@ call plug#begin()
 
     " LSP null-lsp
     Plug 'https://github.com/jose-elias-alvarez/null-ls.nvim'  " Not maintained
-
 
     Plug 's1n7ax/nvim-window-picker'
 
@@ -86,7 +85,9 @@ call plug#begin()
 
     " Codecompanion
     Plug 'olimorris/codecompanion.nvim'
-    Plug 'OXY2DEV/markview.nvim'
+    " Plug 'OXY2DEV/markview.nvim'
+    Plug 'MeanderingProgrammer/render-markdown.nvim'
+
     Plug 'ravitemer/codecompanion-history.nvim'
 
     " MCP stuff
@@ -103,11 +104,6 @@ call plug#begin()
     Plug 'nvim-neotest/nvim-nio'
     Plug 'rcarriga/nvim-dap-ui'
 
-    Plug 'voldikss/vim-floaterm'
-
-    " Enhanced UI
-    Plug 'folke/noice.nvim'
-    Plug 'MunifTanjim/nui.nvim'
     " Statusbar
     Plug 'feline-nvim/feline.nvim'
     " LSP statusline/winbar component that uses LSP
