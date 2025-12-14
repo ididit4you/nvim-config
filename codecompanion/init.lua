@@ -33,14 +33,17 @@ require("codecompanion").setup({
   strategies = {
     chat = {
       roles = {
-        -- LLM header: customize to include the model name
         llm = function(adapter)
           return "CodeCompanion (" ..
               adapter.formatted_name ..
               " " .. (adapter.schema and adapter.schema.model and adapter.schema.model.default or "MODEL") .. ")"
         end,
         user = "Me",
-      }
+      },
+      adapter = {
+        name = "copilot",
+        model = "gpt-5-mini",
+      },
     }
   },
   display = {

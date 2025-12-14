@@ -108,4 +108,7 @@ call plug#begin()
     Plug 'feline-nvim/feline.nvim'
     " LSP statusline/winbar component that uses LSP
     Plug 'SmiteshP/nvim-navic'
+
+    " Cursor stuff
+    Plug 'sphamba/smear-cursor.nvim'
 call plug#end()

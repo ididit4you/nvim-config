@@ -1,30 +1,34 @@
--- require("noice").setup({
---   lsp = {
---     -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
---     override = {
---       ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
---       ["vim.lsp.util.stylize_markdown"] = true,
---       ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
---     },
---   },
---   -- you can enable a preset for easier configuration
---   presets = {
---     bottom_search = true,         -- use a classic bottom cmdline for search
---     command_palette = true,       -- position the cmdline and popupmenu together
---     long_message_to_split = true, -- long messages will be sent to a split
---     inc_rename = false,           -- enables an input dialog for inc-rename.nvim
---     lsp_doc_border = false,       -- add a border to hover docs and signature help
---   },
---   routes = {
---     {
---       view = "notify",
---       filter = { event = "msg_showmode" },
---     },
---     -- {
---     --   view = "cmdline", -- ensures commands appear at the bottom
---     --   filter = { event = "cmdline" },
---     -- },
---   },
--- })
-
 require("feline").setup()
+local smear_default = {
+  cursor_color = nil,
+  stiffness = 0.8,                      -- 0.6      [0, 1]
+  trailing_stiffness = 0.6,             -- 0.45     [0, 1]
+  stiffness_insert_mode = 0.7,          -- 0.5      [0, 1]
+  trailing_stiffness_insert_mode = 0.7, -- 0.5      [0, 1]
+  damping = 0.95,                       -- 0.85     [0, 1]
+  damping_insert_mode = 0.95,           -- 0.9      [0, 1]
+  distance_stop_animating = 0.5,        -- 0.1      > 0
+}
+
+local smear_fire = {
+  cursor_color = "#ff4000",
+  particles_enabled = true,
+  stiffness = 0.5,
+  trailing_stiffness = 0.2,
+  trailing_exponent = 5,
+  damping = 0.6,
+  gradient_exponent = 0,
+  gamma = 1,
+  never_draw_over_target = true, -- if you want to actually see under the cursor
+  hide_target_hack = true,       -- same
+  particle_spread = 1,
+  particles_per_second = 500,
+  particles_per_length = 50,
+  particle_max_lifetime = 800,
+  particle_max_initial_velocity = 20,
+  particle_velocity_from_cursor = 0.5,
+  particle_damping = 0.15,
+  particle_gravity = -50,
+  min_distance_emit_particles = 0,
+}
+require("smear_cursor").setup(smear_default)

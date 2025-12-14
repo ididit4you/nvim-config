@@ -106,7 +106,7 @@ vim.lsp.enable('pyright', {
   end,
   python = {
     analysis = {
-      autoSearchPaths = false,
+      autoSearchPaths = true,
       diagnosticMode = "workspace",
       useLibraryCodeForTypes = true
     }
